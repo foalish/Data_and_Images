@@ -1,6 +1,5 @@
 package davidfoale.info.daniels_images_data;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.provider.ContactsContract;
@@ -10,38 +9,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private ArrayList<AndroidVersion> android;
-    private ArrayList<AndroidVersion> android_versions;
-    private Context context;
 
+
+
+    public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+    private ArrayList<AndroidVersion> android, android_versions;
+    private Context context;
     private final int USER = 0, IMAGE = 1;
 
-    // Provide a suitable constructor
-    public DataAdapter(ArrayList<AndroidVersion> android) { this.android = android;
-     //  this.context = context;
-       this.android = android;
-    }
+        // Provide two suitable constructors
+    public DataAdapter(ArrayList<AndroidVersion> android) {
+        this.android = android;
+        }
+    public DataAdapter(Context context,ArrayList<AndroidVersion> android_versions) {
+        this.android_versions = android_versions;
+        this.context = context;
+        }
 
 
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return this.android.size();
-    }
 
 
     // this tells recycler view about the type of view to inflate based on the position returning USER or IMAGE
     @Override
     public int getItemViewType(int position) {
-        if (android.get(position) instanceof ???) {
-            return USER;
+        if (android.get(position) instanceof user)
+        return USER;
 
         } else if (android_versions.get(position) instanceof String) {
             return IMAGE;
@@ -51,25 +46,35 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
 
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        ViewHolder1 viewHolder;
+
+
+    @Override
+    public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+
+        ViewHolder viewHolder1;
 
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         switch (viewType) {
+
             case USER:
                 View v1 = inflater.inflate(R.layout.activity_main, viewGroup, false);
                 viewHolder = new ViewHolder1(v1);
                 break;
+
             case IMAGE:
                 View v2 = inflater.inflate(R.layout.row_layout, viewGroup, false);
                 viewHolder = new ViewHolder2(v2);
                 break;
         }
-        return viewHolder;
+        return new ViewHolder(view);
     }
+
+
+
+
+
 
 
     /**
@@ -83,6 +88,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
+
             case USER:
                 ViewHolder1 vh1 = (ViewHolder1) viewHolder;
                 configureViewHolder1(vh1, position);
@@ -95,6 +101,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 viewHolder.salary.setText(android.get(position).getSalary());
                 break;
 
+
             case IMAGE:
                 ViewHolder2 vh2 = (ViewHolder2) viewHolder;
                 configureViewHolder2(vh2, position);
@@ -106,39 +113,46 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         }}
 
 
-   // configures VH1
 
-    private void configureViewHolder1(ViewHolder1 vh1, int position) {
-        ??? ??? = (???) android.get(position);
-    }
 
-    // have to incorporate this into above two lines of code
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView job_title, job_desc, qualifications, degree, job_tips, salary;
 
-        public ViewHolder(View view) {
-            super(view);
-            job_title = (TextView) view.findViewById(R.id.job_title);
-            job_desc = (TextView) view.findViewById(R.id.job_desc);
-            qualifications = (TextView) view.findViewById(R.id.qualifications);
-            degree = (TextView) view.findViewById(R.id.degree);
-            job_tips = (TextView) view.findViewById(R.id.job_tips);
-            salary = (TextView) view.findViewById(R.id.salary);
+
+
+        // Return the size of your dataset (invoked by the layout manager)
+        @Override
+        public int getItemCount() {
+            return this.android.size();
         }
+
+
+
+
+
+   // configures VH1
+    private void configureViewHolder1(ViewHolder1 vh1, int position) {
+
+        User user = (User).get(position);
+        if (user != null) {
+
+            vh1.getJob_tips      ().setText((CharSequence) android_versions);
+            vh1.getSalary        ().setText((CharSequence) android_versions);
+            vh1.getDegree        ().setText((CharSequence) android_versions);
+            vh1.getQualifications().setText((CharSequence) android_versions);
+            vh1.getJob_desc      ().setText((CharSequence) android_versions);
+            vh1.getJob_title     ().setText((CharSequence) android_versions);
+        }
+
     }
+
 
 
     // configures VH2
-
     private void configureViewHolder2(ViewHolder2 vh2, int position) {
+        //this should not be a drawable, but should locate the images...
         vh2.getAndroid_image_url().setImageResource(R.id.img_android);
+
     }
 
-        ImageView img_android;
-        public ViewHolder(View view) {
-        super(view);
-        img_android = (ImageView)view.findViewById(R.id.img_android);
-    }
 }
 
 
