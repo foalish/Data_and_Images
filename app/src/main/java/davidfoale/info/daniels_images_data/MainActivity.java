@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    // this all relates to image retrieval
     private ArrayList prepareData() {
 
         ArrayList android_version = new ArrayList<>();

@@ -23,3 +23,5 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
     public void setAndroid_image_url(ImageView img_android) { this.img_android = img_android;
     }
 }
+
+
