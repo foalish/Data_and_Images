@@ -77,7 +77,6 @@
             android:typeface="normal"
             android:textAlignment="center"
             android:textSize="16sp"
-
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:layout_alignTop="@+id/job_tips"

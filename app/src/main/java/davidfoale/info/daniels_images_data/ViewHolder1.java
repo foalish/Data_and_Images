@@ -8,7 +8,12 @@ import android.widget.TextView;
 
 public class ViewHolder1 extends RecyclerView.ViewHolder {
 
-    private TextView degree, salary, qualifications, job_desc,job_title, job_tips;
+    public TextView degree;
+    public TextView salary;
+    public TextView qualifications;
+    public TextView job_desc;
+    public TextView job_title;
+    public TextView job_tips;
 
     public ViewHolder1(View v) {
         super(v);

@@ -9,13 +9,11 @@ public class AndroidVersion {
     private String degree;
     private String job_tips;
     private String salary;
-
     private String android_image_url;
 
 
     public String getDescription()         {  return job_desc;         }
     public String getTitle()               {  return job_title;        }
-
     public String getQualifications()      {  return qualifications;   }
     public String getDegree()              {  return degree;           }
     public String getTips()                {  return job_tips;         }

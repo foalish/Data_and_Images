@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class ViewHolder2 extends RecyclerView.ViewHolder {
 
-    private ImageView img_android;
+    public ImageView img_android;
 
     public ViewHolder2(View v) {
         super(v);

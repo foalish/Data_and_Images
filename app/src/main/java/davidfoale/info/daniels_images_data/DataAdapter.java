@@ -70,13 +70,13 @@ import java.util.ArrayList;
                 viewHolder = new ViewHolder2(v2);
                 break;
 
-    //      default:
-    //         View v = inflater.inflate(R.layout.activity_main, viewGroup, false);
-    //         viewHolder = new RecyclerViewSimpleTextViewHolder(v);
-    //          break;
+          default:
+             View v = inflater.inflate(R.layout.activity_main, viewGroup, false);
+            viewHolder =  new RecyclerViewDefaultViewHolder(v);
+              break;
         }
 
-        return new viewHolder;
+        return viewHolder;
     }
 
 
@@ -102,11 +102,11 @@ import java.util.ArrayList;
                 configureViewHolder1(vh1, position);
 
                 vh1.job_title.setText(android.get(position).getTitle());
-                viewHolder.job_desc.setText(android.get(position).getDescription());
-                viewHolder.qualifications.setText(android.get(position).getQualifications());
-                viewHolder.degree.setText(android.get(position).getDegree());
-                viewHolder.job_tips.setText(android.get(position).getTips());
-                viewHolder.salary.setText(android.get(position).getSalary());
+                vh1.job_desc.setText(android.get(position).getDescription());
+                vh1.qualifications.setText(android.get(position).getQualifications());
+                vh1.degree.setText(android.get(position).getDegree());
+                vh1.job_tips.setText(android.get(position).getTips());
+                vh1.salary.setText(android.get(position).getSalary());
                 break;
 
 
@@ -115,12 +115,13 @@ import java.util.ArrayList;
                 configureViewHolder2(vh2, position);
 
                 Picasso.with(context).load(android_versions.get(position).getAndroid_image_url()).resize(61, 65).into
-                        (viewHolder.img_android);
+                        (vh2.img_android);
                 break;
-     //    default:
-     //           RecyclerViewSimpleTextViewHolder vh = (RecyclerViewSimpleTextViewHolder) viewHolder;
-     //           configureDefaultViewHolder(vh, position);
-     //           break;
+
+        default:
+          RecyclerViewDefaultViewHolder vh = (RecyclerViewDefaultViewHolder) viewHolder;
+              configureDefaultViewHolder(vh, position);
+              break;
 
         }
     }
@@ -137,19 +138,20 @@ import java.util.ArrayList;
 
 
     /**
-     not sure if the code below belongs in the data adapter or as a seperate class as its the methods used to configure the
+     not sure if the code below belongs in the data adapter or as a separate class as its the methods used to configure the
      individual RecyclerView.viewholder objects
     */
 
-    //   private void configureDefaultViewHolder(RecyclerViewSimpleTextViewHolder vh, int position) {
-    //   vh.getJob().setText((CharSequence) android.get(position));        }
+      private void configureDefaultViewHolder(RecyclerViewDefaultViewHolder vh, int position) {
+       vh.getJob_tips().setText((CharSequence) android.get(position));        }
+
+
 
    // configures VH1
        private void configureViewHolder1(ViewHolder1 vh1, int position) {
-
-   // unsure if this is adapter or data or neither?
-        Adapter adapter = (Adapter).get(position);
-        if (adapter != null) {
+   // unsure of code ? adapter / dataAdapter
+        DataAdapter dataAdapter = dataAdapter.get(position);
+        if (dataAdapter != null) {
 
             vh1.getJob_tips      ().setText((CharSequence) android_versions);
             vh1.getSalary        ().setText((CharSequence) android_versions);
